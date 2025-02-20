@@ -1,7 +1,8 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import "./index.css";
 
 export const Pokemon = () => {
+  const [pokemon, setPokemon] = useState([]);
   const API = "https://pokeapi.co/api/v2/pokemon?limit=24";
 
   const fetchPokemon = async () => {
@@ -10,12 +11,15 @@ export const Pokemon = () => {
       const data = await res.json();
       // console.log(data);
 
-      const detaiedPokemon = data.results.map(async (currPokemon) => {
+      const detailedPokemon = data.results.map(async (currPokemon) => {
         const res = await fetch(currPokemon.url);
         const data = await res.json();
         return data;
       });
-      console.log(detaiedPokemon);
+
+      const detailedResponce = await Promise.all(detailedPokemon);
+      setPokemon(detailedResponce);
+      console.log(detailedResponce);
     } catch (error) {
       console.log(error);
     }
@@ -24,9 +28,29 @@ export const Pokemon = () => {
     fetchPokemon();
   }, []);
 
-  return (
-    <div>
-      <h1>Hey! Pokemon</h1>
-    </div>
-  );
+  return <>
+    <section className="container">
+        <header>
+          <h1> Lets Catch Pokémon</h1>
+        </header>
+        <div className="pokemon-search">
+          <input
+            type="text"
+            placeholder="search Pokemon"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
+        </div>
+        <div>
+          <ul className="cards">
+            {/* {pokemon.map((curPokemon) => { */}
+            {searchData.map((curPokemon) => {
+              return (
+                <PokemonCards key={curPokemon.id} pokemonData={curPokemon} />
+              );
+            })}
+          </ul>
+        </div>
+      </section>
+  </>
 };
