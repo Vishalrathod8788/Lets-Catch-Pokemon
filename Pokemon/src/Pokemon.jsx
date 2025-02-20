@@ -28,8 +28,9 @@ export const Pokemon = () => {
     fetchPokemon();
   }, []);
 
-  return <>
-    <section className="container">
+  return (
+    <>
+      <section className="container">
         <header>
           <h1> Lets Catch Pokémon</h1>
         </header>
@@ -52,5 +53,6 @@ export const Pokemon = () => {
           </ul>
         </div>
       </section>
-  </>
+    </>
+  );
 };
