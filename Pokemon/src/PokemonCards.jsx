@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 export const PokemonCards = ({ pokemonData }) => {
   return (
     <>
@@ -50,4 +52,39 @@ export const PokemonCards = ({ pokemonData }) => {
       </li>
     </>
   );
+};
+
+PokemonCards.propTypes = {
+  pokemonData: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    sprites: PropTypes.shape({
+      other: PropTypes.shape({
+        dream_world: PropTypes.shape({
+          front_default: PropTypes.string.isRequired,
+        }),
+      }),
+    }).isRequired,
+    types: PropTypes.arrayOf(
+      PropTypes.shape({
+        type: PropTypes.shape({
+          name: PropTypes.string.isRequired,
+        }),
+      })
+    ).isRequired,
+    height: PropTypes.number.isRequired,
+    weight: PropTypes.number.isRequired,
+    stats: PropTypes.arrayOf(
+      PropTypes.shape({
+        base_stat: PropTypes.number.isRequired,
+      })
+    ).isRequired,
+    base_experience: PropTypes.number.isRequired,
+    abilities: PropTypes.arrayOf(
+      PropTypes.shape({
+        ability: PropTypes.shape({
+          name: PropTypes.string.isRequired,
+        }),
+      })
+    ).isRequired,
+  }).isRequired,
 };
