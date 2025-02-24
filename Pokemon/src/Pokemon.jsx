@@ -29,6 +29,8 @@ export const Pokemon = () => {
       console.log(detailedResponce);
     } catch (error) {
       console.log(error);
+      setError(error);
+      setLoading(false);
     }
   };
   useEffect(() => {
