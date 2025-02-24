@@ -9,6 +9,7 @@ export const Pokemon = () => {
   const [search, setSearch] = useState("");
   const API = "https://pokeapi.co/api/v2/pokemon?limit=124";
 
+  //Fetch Pokemon Data
   const fetchPokemon = async () => {
     try {
       const res = await fetch(API);
@@ -89,43 +90,3 @@ export const Pokemon = () => {
     </>
   );
 };
-
-//   if (loading) {
-//     return (
-//       <div className="loader">
-//         <div style={{ alignItems: "center" }} className="pokemon-loader"></div>
-//         <h1 className="loading-text">Loading...</h1>
-//       </div>
-//     );
-//   }
-
-//   if (error) {
-//     return <h1>{error.message}</h1>;
-//   }
-//   return (
-//     <>
-//       <section className="container">
-//         <header>
-//           <h1> Lets Catch Pokémon</h1>
-//         </header>
-//         <div className="pokemon-search">
-//           <input
-//             type="text"
-//             placeholder="search Pokemon"
-//             value={search}
-//             onChange={(e) => setSearch(e.target.value)}
-//           />
-//         </div>
-//         <div>
-//           <ul className="cards">
-//             {searchData.map((currPokemon) => {
-//               return (
-//                 <PokemonCards key={currPokemon.id} pokemonData={currPokemon} />
-//               );
-//             })}
-//           </ul>
-//         </div>
-//       </section>
-//     </>
-//   );
-// };
